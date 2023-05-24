@@ -62,9 +62,9 @@ public class BoardDAO {
 			 //1. 연결
 			 getConnection();
 			 //2. SQL문장 생성
-			 String sql="SELECT no,name,subject,TO_CHAR(regdate,'YYYY-MM-DD'),hit,num "
-					 +"FROM (SELECT no,name,subject,regdate,hit,rownum as num "
-					 +"FROM (SELECT no,name,subject,regdate,hit "
+			 String sql="SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,num "
+					 +"FROM (SELECT no,subject,name,regdate,hit,rownum as num "
+					 +"FROM (SELECT no,subject,name,regdate,hit "
 					 +"FROM freeboard ORDER BY no DESC)) "
 					 +"WHERE num BETWEEN ? AND ?";
 			 // rownum은 중간에서 데이터를 추출할 수 없다

@@ -38,22 +38,22 @@ public class BoardListSurvlet extends HttpServlet {
 		out.println("<center>");
 		out.println("<h1>자유 게시판</h1>");
 		out.println("<table width=700 border=1 bordercolor=black>");
-		out.print("<tr>");
-		out.print("<th width=10%>번호</th>");
-		out.print("<th width=45%>제목</th>");
-		out.print("<th width=15%>이름</th>");
-		out.print("<th width=20%>작성일</th>");
-		out.print("<th width=10%>조회수</th>");
-		out.print("</tr>");
+		out.println("<tr>");
+		out.println("<th width=10%>번호</th>");
+		out.println("<th width=45%>제목</th>");
+		out.println("<th width=15%>이름</th>");
+		out.println("<th width=20%>작성일</th>");
+		out.println("<th width=10%>조회수</th>");
+		out.println("</tr>");
 		for(BoardVO vo:list)
 		{
-			out.print("<tr>");
-			out.print("<td width=10% align=center>"+vo.getNo()+"</td>");
-			out.print("<td width=45%>"+vo.getSubject()+"</td>");
-			out.print("<td width=15%>"+vo.getName()+"</td>");
-			out.print("<td width=20%>"+vo.getRegdate()+"</td>");
-			out.print("<td width=10%>"+vo.getHit()+"</td>");
-			out.print("</tr>");
+			out.println("<tr>");
+			out.println("<td width=10% align=center>"+vo.getNo()+"</td>");
+			out.println("<td width=45%>"+vo.getSubject()+"</td>");
+			out.println("<td width=15%>"+vo.getName()+"</td>");
+			out.println("<td width=20%>"+vo.getDbday()+"</td>");
+			out.println("<td width=10%>"+vo.getHit()+"</td>");
+			out.println("</tr>");
 		}
 		out.print("</table>");
 		out.println("</center>");
