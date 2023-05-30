@@ -65,7 +65,7 @@ public class BoardDeleteServlet extends HttpServlet {
 		if(bCheck==true)
 		{
 			// 목록으로 이동
-			response.sendRedirect("BoardListServlet?no="+no);
+			response.sendRedirect("BoardListServlet");
 		}
 		else
 		{   // 삭제창으로 이동
