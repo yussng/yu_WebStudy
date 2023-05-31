@@ -90,10 +90,11 @@ public class BoardUpdateServlet extends HttpServlet {
 		}
 		else
 		{
-			out.println("<script>");
-			out.println("alter(\"비밀번호 틀립니다!\");");
-			out.println("history.back()");
-			out.println("</script>");
+			// 삭제창으로 이동 
+	    	out.println("<script>");
+	    	out.println("alert(\"비밀번호 틀립니다!\");");
+	    	out.println("history.back();");
+	    	out.println("</script>");
 		}
 	}
 

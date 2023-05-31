@@ -221,7 +221,7 @@ public class FoodDAO {
 					+ "WHERE address LIKE '%'||?||'%'";
 			// => MySQL => LIKE CONCAT('%',?,'%')*/
 			String sql="SELECT fno,name,poster,score,num "
-					+ "FROM (SELECT fno,name,poster,score,rownum AS num) "
+					+ "FROM (SELECT fno,name,poster,score,rownum AS num "
 					+ "FROM (SELECT fno,name,poster,score "
 					+ "FROM food_location "
 					+ "WHERE address LIKE '%'||?||'%')) "
@@ -271,6 +271,7 @@ public class FoodDAO {
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, addr);
 			ResultSet rs=ps.executeQuery();
+			rs.next();
 			count=rs.getInt(1);
 			rs.close();
 		}catch(Exception ex)

@@ -233,30 +233,7 @@ public class BoardDAO {
 		 }
 		 return vo;
 	 }
-	 /*public void boardUpdate(BoardVO vo)
-	 {
-		 try
-		 {
-			 getConnection();
-			 String sql="UPDATE freeboard "
-					 +"SET(no,name,subject,content,pwd) "
-				 	 +"WHERE(fb_no_seq.nextval,?,?,?,?)";
-				 ps=conn.prepareStatement(sql);
-				 ps.setString(1, vo.getName());
-				 ps.setString(2, vo.getSubject());
-				 ps.setString(3, vo.getContent());
-				 ps.setString(4, vo.getPwd());	 
-			 ps.executeUpdate();
-		 }catch(Exception ex)
-		 {
-			 ex.printStackTrace();
-		 }
-		 finally
-		 {
-			disConnection(); 
-		 }
-		 
-	 }*/
+	 
 	 public boolean boardUpdate(BoardVO vo)
 	 {
 		 boolean bCheck=false;
@@ -294,6 +271,30 @@ public class BoardDAO {
 		 }
 		 return bCheck;
 	 }
+	 /*public void boardUpdate(BoardVO vo)
+	 {
+		 try
+		 {
+			 getConnection();
+			 String sql="UPDATE freeboard "
+					 +"SET(no,name,subject,content,pwd) "
+				 	 +"WHERE(fb_no_seq.nextval,?,?,?,?)";
+				 ps=conn.prepareStatement(sql);
+				 ps.setString(1, vo.getName());
+				 ps.setString(2, vo.getSubject());
+				 ps.setString(3, vo.getContent());
+				 ps.setString(4, vo.getPwd());	 
+			 ps.executeUpdate();
+		 }catch(Exception ex)
+		 {
+			 ex.printStackTrace();
+		 }
+		 finally
+		 {
+			disConnection(); 
+		 }
+		 
+	 }*/
 	 /*public boolean boardUpdate(int no,String pwd)
 	 {
 		 boolean bCheck=false;
