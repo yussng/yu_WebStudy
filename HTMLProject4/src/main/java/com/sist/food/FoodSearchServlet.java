@@ -101,12 +101,24 @@ public class FoodSearchServlet extends HttpServlet {
 		out.println("<div class=row>");
 		out.println("<div class=text-center>");
 		out.println("<ul class=pagination>");
-		out.println("<li><a href=#>&lt;</a></li>");
+		if(startPage>1)
+		{
+			out.println("<li><a href=FoodSearchServlet?page="+(startPage-1)+"&addr="+addr+">&lt;</a></li>");
+		}
+		for(int i=startPage;i<=endPage;i++)
+		{
+			out.println("<li "+(curpage==i?"class=active":"")+"><a href=FoodSearchServlet?page="+i+"&addr="+addr+">"+i+"</a></li>");
+		}
+		if(endPage<totalpage)
+		{
+			out.println("<li><a href=FoodSearchServlet?page="+(endPage+1)+"&addr="+addr+">&gt;</a></li>");
+		}
+		/*out.println("<li><a href=#>&lt;</a></li>");
 		for(int i=startPage;i<=endPage;i++)
 		{
 			out.println("<li "+(curpage==i?"class=active":"")+"><a href=FoodSearchServlet?page="+i+">"+i+"</a></li>");
 		}
-		out.println("<li><a href=#>&gt;</a></li>");
+		out.println("<li><a href=#>&gt;</a></li>");*/
 		out.println("</ul>");
 		out.println("</div>");
 		out.println("</div>");
