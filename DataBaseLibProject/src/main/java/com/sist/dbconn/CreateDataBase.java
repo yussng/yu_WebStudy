@@ -14,7 +14,7 @@ public class CreateDataBase {
 	}
 	
 	// 연결
-	public Connection getconConnection()
+	public Connection getConnection()
 	{
 		try
 		{
