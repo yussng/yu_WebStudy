@@ -1,0 +1,64 @@
+<!-- onclick -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+let i=0; // open=0 , close=1
+window.onload=function(){
+	let r=document.querySelector("#read");
+	r.onmouseover=function(){
+		r.style.cursor="pointer"
+	}
+	r.onmouseout=function(){
+		r.style.cursor="none"
+	}
+	r.onclick=function(){
+		if(i==0)
+		{
+			let ss=document.querySelector("#s");
+			ss.style.display=''; // open => show
+			r.textContent='닫기';
+			i=1;
+		}
+		else
+		{
+			let ss=document.querySelector("#s");
+			ss.style.display='none'; // close => hide
+			r.textContent='더보기';
+			i=0;
+		}			
+	}
+	// form태그에서 submit를 제거 => 이벤트 제거
+	// e.defaultPrevent
+	document.querySelector("#click").onclick=function(){
+		return false;
+	}
+}
+</script>
+</head>
+<body>
+  <a href="http://www.naver.com" id="click">Naver</a>
+  <p>
+  <pre>
+이 부총리는 또한 “일각에서 ‘물수능’이라고 하는데 공정수능은 결코 물수능이 아니다”라며 “논란이 된 킬러문항은 시험 변별도를 높이는 쉬운 방법이나
+학생들을 사교육으로 내모는 근본 원인”이라고 했다. 이어 “앞으로 공정 수능이 되도록 공교육 과정 내에서 다루지 않는 내용은 출제를 배제하고 적정 
+난이도가 확보되도록 출제기법을 고도화해 출제진이 충실한 노력을 할 수 있도록 시스템 점검을 하는 등 교육부 수장으로 모든 가능한 지원을 하겠다”고 덧붙였다.
+
+이날 회의에서 여당은 대통령이 ‘입시 전문가’라며 띄우기에 나섰다. 박대출 국민의힘 정책위의장은 머리발언에서 “대통령은 검찰 초년생인 시보 때부터 수십년
+동안 검사생활을 하면서 입시 비리 사건을 수도 없이 다뤄봤고, 특히 조국 일가의 대입 부정 사건을 수사 지휘하는 등 대입 제도의 누구보다 해박한 전문가”라고 말했다. 
+일각에서 교육문제를 잘 모르는 대통령이 즉흥 발언으로 현장 불안감을 키웠다는 비판이 제기되자, 수습에 나선 것이다.
+ 	
+ 	<span id="read">더보기</span>
+	<span style="display:none" id="s">
+	박 의장은 “교과서에 없는 것을 내지 말란 게 아니라 공교육 교과과정에 있는 것으로 변별력을 갖추라는 것”이라며 “학교에서 안 배운 것을 내지 말라는 것과 
+	학교에서 가르치는 것만을 내라는 건 엄격히 다르다”고 말했다. 애초 이 부총리는 지난 15일 브리핑에서 “학교 수업에서 다루지 않는 내용은 출제에서 배제하라”고 했는데, 
+	대통령실은 다음 날 ‘출제 배제’ 대상이 “공교육 교과과정에서 다루지 않는 분야”라고 정정한 바 있다.
+
+	이를 두고 유승민 전 의원은 페이스북에 “대통령실은 ‘학교 수업과 공교육 교과과정은 비슷해 보이지만 완벽하게 다른 말’이라고 하는데 도대체 뭐가 다르다는 거냐”며 
+	“대통령이 또 남 탓을 한다”고 비판했다.
+	</span>
+  </pre>
+</body>
+</html>
