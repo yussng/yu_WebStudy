@@ -110,7 +110,7 @@
           </tr>
           <tr>
             <th width=20% style="color:gray">전화</th>
-            <td width=80%>${vo.phone }</td>
+            <td width=80%>${vo.tel }</td>
           </tr>
           <tr>
             <th width=20% style="color:gray">음식종류</th>
