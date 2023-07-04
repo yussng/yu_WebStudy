@@ -71,7 +71,7 @@ $(function(){
 				}
 				else
 				{
-					location.href="../main/main.do"
+					location.href="../jsp/main.do"
 				}
 			}
 		})
@@ -175,6 +175,20 @@ $(function(){
   <div class="container">
     <h1>Login</h1>
     <div class="row">
+	  <c:if test="${sessionScope.id==null }">
+      <ul>
+        <li><i class="fa fa-phone"></i><input type=text name=id class="input-sm" size=10 id=id></li>
+        <li><i class="fa fa-envelope-o"></i><input type=password name=pwd class="input-sm" size=10 id=pwd></li>
+        <li><input type=button value="로그인" class="btn btn-sm btn-danger" id="logBtn"></li>
+      </ul>
+     </c:if>
+
+    </div>
+  </div>
+  
+<!--   <div class="container">
+    <h1>Login</h1>
+    <div class="row">
       <form method=post action=login_ok.jsp id="frm">
       <table class="table">
         <tr>
@@ -208,7 +222,7 @@ $(function(){
       </table>
       </form>
     </div>
-  </div>
+  </div> -->
    
    <!-- core  -->
    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
