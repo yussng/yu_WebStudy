@@ -30,7 +30,7 @@ $(function(){
 			i=0;
 		}
 	})
-	${'#delBtn'}.click(function(){
+	$('#delBtn').click(function(){
 		let pwd=$('#pwd1').val();
 		let no=$('#delBtn').attr("data-no");
 		if(pwd.trim()=="")
