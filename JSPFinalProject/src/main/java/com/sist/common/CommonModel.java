@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import com.sist.dao.*;
 import com.sist.vo.*;
+// => Spring (공통모듈 => AOP)
+// Spring => DI / AOP
 public class CommonModel {
 	public static void commonRequestData(HttpServletRequest request)
 	{
