@@ -8,4 +8,10 @@
   <bean id="seoul" class="com.sist.model.SeoulModel"/>
   <bean id="reply" class="com.sist.model.ReplyModel"/>
   <bean id="pfr" class="com.sist.model.FreeBoardReplyModel"/>
+  <bean id="reserve" class="com.sist.model.ReserveModel"/>
+  <bean id="recipe" class="com.sist.model.RecipeModel"/>
+  <bean id="mypage"	class="com.sist.model.MyPageModel"/>
+  <bean id="admin" class="com.sist.model.AdminPageModel"/>
+  <bean id="jjimlike" class="com.sist.model.FoodJjimLikeModel"/>
+  <bean id="notice" class="com.sist.model.NoticeModel"/>
 </beans>
