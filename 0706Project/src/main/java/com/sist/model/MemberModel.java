@@ -151,7 +151,7 @@ public String memberJoinOk(HttpServletRequest request,HttpServletResponse respon
  @RequestMapping("member/findpwd.do")
  public String findPasswordAction(HttpServletRequest request,HttpServletResponse response)
  {
-	 MemberDAO dao=new MemberDAO();
+	 /*MemberDAO dao=new MemberDAO();
 	 String id=request.getParameter("id");
 	 String email=request.getParameter("email");
 	 String name=request.getParameter("name");
@@ -159,21 +159,26 @@ public String memberJoinOk(HttpServletRequest request,HttpServletResponse respon
 	 request.setAttribute("pwd", pwd);
 	 if(pwd==null)
 		 return "member/findpwd.jsp";
-	 return "../login/findpwdafter.jsp";
+	 return "../login/findpwdafter.jsp";*/
+	 
+	 request.setAttribute("main_jsp", "../member/findpwd.jsp");
+	 return "../jsp/main.jsp";
  }
  
  // 아이디 찾기 로직
  @RequestMapping("member/findid.do")
  public String findIdAction(HttpServletRequest request,HttpServletResponse response)
  {
-	 MemberDAO dao=new MemberDAO();
+	 /*MemberDAO dao=new MemberDAO();
 	 String name=request.getParameter("name");
 	 String email=request.getParameter("email");
 	 String id=dao.findId(name,email);
 	 request.setAttribute("id", id);
 	 if(id==null)
 		 return "member/findid.jsp";
-	 return "../member/findidafter.jsp";
+	 return "../member/findidafter.jsp";*/
 	 
+	 request.setAttribute("main_jsp", "../member/findpwd.jsp");
+	 return "../jsp/main.jsp";
  }
 }

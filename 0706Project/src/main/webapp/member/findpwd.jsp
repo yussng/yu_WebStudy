@@ -199,7 +199,7 @@
       </div>
       
       <div class="text-center">
-        <a href="javascript:void(0);" id="findBtn" onclick="log()">
+        <a href="../member/findpwdafter" id="findpwdBtn" onclick="log()">
         	<span></span>
       		<span></span>
       		<span></span>
@@ -209,14 +209,14 @@
         <!-- <button type="submit" class="btn btn-outline-secondary findbtn">찾기</button> -->
       </div> 
       <div class="text-center">
-        <a href="javascript:void(0);" id="logBtn" onclick="log()"> 
+        <a href="../member/login.do"> 
       	  <span></span>
       	  <span></span>
       	  <span></span>
       	  <span></span>
      	  로그인
 	    </a>
-	    <a href="javascript:void(0);" id="logBtn" onclick="log()"> 
+	    <a href="../member/join.do" id="logBtn"> 
       	  <span></span>
       	  <span></span>
       	  <span></span>

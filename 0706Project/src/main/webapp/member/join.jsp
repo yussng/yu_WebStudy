@@ -16,9 +16,6 @@
    <link rel="stylesheet" href="../assets/css/joeblog.css">
    <link rel="stylesheet" href="../shadow/css/shadowbox.css">
 <style type="text/css">
-.container{
-	margin-top: 50px;
-}
 .row1{
 	margin: 0px auto;
 	width:700px;
@@ -154,14 +151,14 @@ Shadowbox.init({
     <!-- End Of Page Second Navigation -->
 
    <!-- Page Header -->
-   <header class="header header-mini"> 
+   <!-- <header class="header header-mini"> 
       <div class="header-title">회원가입</div> 
       <nav aria-label="breadcrumb">
       </nav>
-   </header> <!-- End Of Page Header -->
+   </header>  --><!-- End Of Page Header -->
 
    <!-- main content -->
-   <div class="container">
+   <div class="container"> 
 
       <!-- Inputs -->
       <div class="row row1">

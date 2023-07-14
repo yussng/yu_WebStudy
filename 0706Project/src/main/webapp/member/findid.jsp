@@ -179,6 +179,48 @@
 }
 </style>
 <script type="text/javascript">
+$(function(){
+	$('#findidBtn').on("click",function(){
+		let name=$('#name').val();
+		if(name.trim()=="")
+		{
+			$('#dong').focus();
+			return;
+		}
+		$.ajax({
+			type:'post',
+			url:'../member/findidafter.do',
+			data:{"name":name},
+			success:function(result)
+			{
+				alert(result)
+				$('#result').html(result);
+			}
+		})
+	})
+})
+/* function findId_click(){
+	var name=$('#name').val()
+	var phone=$('#email').val()
+	
+	$.ajax({
+		url:"../find_id",
+		type:"POST",
+		data:{"name":name,"email":email},
+		success:function(data){
+			if(data==0){
+				$('#id_value').text("회원 정보를 확인해주세요!");
+				$('#name').val('');
+				$('#email').val('');
+			}
+		}
+		error:function(){
+			alert("에러입니다");
+		}
+	})
+} */
+</script>
+<script type="text/javascript">
 $('#joinBtn').click(function(){
 	   $('#joinFrm').submit();
 })
@@ -199,7 +241,7 @@ $('#joinBtn').click(function(){
         <label>이메일</label>
       </div>    
       <div class="text-center">
-        <a href="../member/findidafter" id="findBtn" onclick="log()">
+        <a href="../member/findidafter" id="findidBtn" onclick="id_search()">
         	<span></span>
       		<span></span>
       		<span></span>
@@ -225,6 +267,8 @@ $('#joinBtn').click(function(){
 	    </a>
       </div>     
     </form>
+    <div>
+    </div>
   </div>
 </div>
 </body>

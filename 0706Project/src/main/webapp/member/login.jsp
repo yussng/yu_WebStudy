@@ -248,14 +248,14 @@ function log(){
 	    </a>
 	  </div>
     <div class="text-center">
-      <a href="../member/findid.jsp">
+      <a href="../member/findid.do">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         아이디 찾기
 	  </a>
-      <a href="../member/findpwd.jsp"> 
+      <a href="../member/findpwd.do"> 
        <span></span>
         <span></span>
         <span></span>
