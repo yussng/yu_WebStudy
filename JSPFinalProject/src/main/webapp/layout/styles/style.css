@@ -17,6 +17,7 @@
 }
 .wrap:before {
   content: "";
+  
   display: table;
 }
 
