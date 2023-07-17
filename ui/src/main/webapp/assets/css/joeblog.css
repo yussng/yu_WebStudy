@@ -162,9 +162,10 @@ sup {
 }
 
 a {
-  color: #c2f6ea;
+  color: #9CCC65;
   text-decoration: none;
   background-color: transparent;
+  font-weight:bold;
 }
 
 a:hover {
@@ -2941,15 +2942,15 @@ fieldset:disabled a.btn {
 }
 
 .btn-danger {
-  color: #212529;
-  background-color: #f9948d;
-  border-color: #f9948d;
+  color: #fff;
+  background-color: #0B4C5F;
+
 }
 
 .btn-danger:hover {
   color: #212529;
-  background-color: #f77269;
-  border-color: #f6675d;
+  background-color: #0B4C5F;
+  border-color: #fff;
 }
 
 .btn-danger:focus, .btn-danger.focus {
@@ -2958,15 +2959,15 @@ fieldset:disabled a.btn {
 
 .btn-danger.disabled, .btn-danger:disabled {
   color: #212529;
-  background-color: #f9948d;
-  border-color: #f9948d;
+
+
 }
 
 .btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled).active,
 .show > .btn-danger.dropdown-toggle {
   color: #fff;
-  background-color: #f6675d;
-  border-color: #f55c51;
+/*   background-color: #f6675d; */
+/*   border-color: #f55c51; */
 }
 
 .btn-danger:not(:disabled):not(.disabled):active:focus, .btn-danger:not(:disabled):not(.disabled).active:focus,
@@ -3010,7 +3011,7 @@ fieldset:disabled a.btn {
 
 .btn-dark {
   color: #fff;
-  background-color: #343a40;
+  background-color: #0B4C5F;
   border-color: #343a40;
 }
 
@@ -11595,6 +11596,9 @@ textarea.form-control {
   border-width: 0;
 }
 
+.fa-solid fa-house{
+	background: url(../imgs/house-soild.svg)
+}
 .page-footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11614,7 +11618,7 @@ textarea.form-control {
 
 .page-header {
   position: relative;
-  background: url(../imgs/header.jpg) no-repeat center top fixed;
+  background: url(../imgs/aaaa.PNG) no-repeat center top fixed;
   background-size: cover;
   height: 450px;
 }

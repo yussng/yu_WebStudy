@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +9,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-    <header class="page-header"></header>
+	
+	
+  
+  <div class="container">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="../assets/imgs/t2.jpg" alt="First slide" style="height: 350px">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="../assets/imgs/t1.jpg" alt="Second slide" style="height: 350px">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="../assets/imgs/img-1.jpg" alt="Third slide" style="height: 350px">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+	
     <div class="container">
     <section>
             <div class="feature-posts">                     
@@ -35,227 +67,44 @@
         <div class="container-fluid tm-container-content tm-mt-60">
         <div class="row mb-4">
             <h2 class="col-6 tm-text-primary">
-                Latest Photos
+                Restaurant
             </h2>
             <div class="col-6 d-flex justify-content-end align-items-center">
-                <form action="" class="tm-text-primary">
+                <!-- <form action="" class="tm-text-primary">
                     Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 200
-                </form>
+                </form> -->
+                <a href="../food/foodList.do">더보기</a>
             </div>
         </div>
         <div class="row tm-mb-90 tm-gallery">
+        	<c:forEach var="flist" items="${flist }">
         	<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
                 <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-03.jpg" alt="Image" class="img-fluid">
+              	  <a href="#">
+                    <img src="${flist.poster }" alt="Image" class="img-fluid rounded" style="width:250px; height:150px; border-radius:20px;">
                     <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Clocks</h2>
-                        <a href="single-post.html">View more</a>
-                    </figcaption>                    
+                         <h2>
+                        <c:if test="${flist.title.length()>10 }">
+                          	 ${flist.title.substring(0,10) }
+                          </c:if>
+                       
+                          <c:if test="${flist.title.length()<10 }">
+                          	 ${flist.title }
+                          </c:if>
+                        </h2>
+                       
+                    </figcaption>   
+                     e</a>                 
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">18 Oct 2020</span>
-                    <span>9,906 views</span>
+                	<span>${flist.score }</span> 	 
+                    <span>${flist.price }</span>
                 </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-04.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Plants</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">14 Oct 2020</span>
-                    <span>16,100 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-05.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Morning</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">12 Oct 2020</span>
-                    <span>12,460 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-06.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Pinky</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">10 Oct 2020</span>
-                    <span>11,402 views</span>
-                </div>
-            </div>
-            
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-01.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Hangers</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">24 Sep 2020</span>
-                    <span>16,008 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-02.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Perfumes</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">20 Sep 2020</span>
-                    <span>12,860 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-07.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Bus</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">16 Sep 2020</span>
-                    <span>10,900 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-08.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>New York</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">12 Sep 2020</span>
-                    <span>11,300 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-09.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Abstract</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">10 Sep 2020</span>
-                    <span>42,700 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-10.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Flowers</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">8 Sep 2020</span>
-                    <span>11,402 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-11.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Rosy</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">4 Sep 2020</span>
-                    <span>32,906 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-12.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Rocki</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">28 Aug 2020</span>
-                    <span>50,700 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-13.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Purple</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">22 Aug 2020</span>
-                    <span>107,510 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-14.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Sea</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">14 Aug 2020</span>
-                    <span>118,006 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-15.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Turtle</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">9 Aug 2020</span>
-                    <span>121,300 views</span>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <figure class="effect-ming tm-video-item">
-                    <img src="../assets/imgs/img-16.jpg" alt="Image" class="img-fluid">
-                    <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>Peace</h2>
-                        <a href="photo-detail.html">View more</a>
-                    </figcaption>                    
-                </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">3 Aug 2020</span>
-                    <span>21,204 views</span>
-                </div>
-            </div>         
+            </div>  
+            </c:forEach> 
         </div> <!-- row -->
         <div class="row tm-mb-90">
-            <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
+            <!-- <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
                 <a href="javascript:void(0);" class="btn btn-primary tm-btn-prev mb-2 disabled">Previous</a>
                 <div class="tm-paging d-flex">
                     <a href="javascript:void(0);" class="active tm-paging-link"style="color: black;">1</a>
@@ -264,7 +113,173 @@
                     <a href="javascript:void(0);" class="tm-paging-link"style="color: black;">4</a>
                 </div>
                 <a href="javascript:void(0);" class="btn btn-primary tm-btn-next">Next Page</a>
-            </div>            
+            </div>         -->    
+        </div>
+    </div>
+    <div class="container-fluid tm-container-content tm-mt-60">
+        <div class="row mb-4">
+            <h2 class="col-6 tm-text-primary">
+                Recipe
+            </h2>
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <!-- <form action="" class="tm-text-primary">
+                    Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 200
+                </form> -->
+                <a href="../list/recipeList.do">더보기</a>
+            </div>
+        </div>
+        
+        <div class="row tm-mb-90 tm-gallery">
+        <!--  cforEach -->
+        <c:forEach var="rlist" items="${rlist }">
+        	<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
+                <figure class="effect-ming tm-video-item">
+              	  <a href="../list/recipeDetail.do?rdno=${rlist.rdno }">
+                    <img src="${rlist.poster }" alt="Image" class="img-fluid rounded" style="width:250px; height:150px; border-radius:20px;">
+                    <figcaption class="d-flex align-items-center justify-content-center">
+                         <h2>
+                        <c:if test="${rlist.title.length()>10 }">
+                          	 ${rlist.title.substring(0,10) }
+                          </c:if>
+                       
+                          <c:if test="${rlist.title.length()<10 }">
+                          	 ${rlist.title }
+                          </c:if>
+                        </h2>
+                       
+                    </figcaption>   
+                    </a>                 
+                </figure>
+                <div class="d-flex justify-content-between tm-text-gray">
+                	<img alt="" src="../img/defaultchef_pos.jpg" style="width:50px; border-radius:50px;">
+                	<c:if test="${rlist.chef_pos!=null } ">
+                    <img alt="" src="${rlist.chef_pos}" style="width:50px; border-radius:50px;">
+                    </c:if>
+                    <span>${rlist.chef }</span>
+                </div>
+            </div>  
+            </c:forEach>
+             <!-- cForeach 끝 -->
+        </div> <!-- row -->
+       
+        <div class="row tm-mb-90">
+            <!-- <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
+                <a href="javascript:void(0);" class="btn btn-primary tm-btn-prev mb-2 disabled">Previous</a>
+                <div class="tm-paging d-flex">
+                    <a href="javascript:void(0);" class="active tm-paging-link"style="color: black;">1</a>
+                    <a href="javascript:void(0);" class="tm-paging-link"style="color: black;">2</a>
+                    <a href="javascript:void(0);" class="tm-paging-link"style="color: black;">3</a>
+                    <a href="javascript:void(0);" class="tm-paging-link"style="color: black;">4</a>
+                </div>
+                <a href="javascript:void(0);" class="btn btn-primary tm-btn-next">Next Page</a>
+            </div>  -->           
+        </div>
+    </div>
+    <div class="container-fluid tm-container-content tm-mt-60">
+        <div class="row mb-4">
+            <h2 class="col-6 tm-text-primary">
+                Shopping
+            </h2>
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <!-- <form action="" class="tm-text-primary">
+                    Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 200
+                </form> -->
+                <a href="#">더보기</a>
+            </div>
+        </div>
+        <div class="row tm-mb-90 tm-gallery">
+        	<c:forEach var="plist" items="${plist }">
+        	<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
+                <figure class="effect-ming tm-video-item">
+              	  <a href="#">
+                    <img src="${plist.poster }" alt="Image" class="img-fluid rounded" style="width:250px; height:150px; border-radius:20px;">
+                    <figcaption class="d-flex align-items-center justify-content-center">
+                         <h2>
+                        <c:if test="${plist.title.length()>10 }">
+                          	 ${plist.title.substring(0,10) }
+                          </c:if>
+                       
+                          <c:if test="${plist.title.length()<10 }">
+                          	 ${plist.title }
+                          </c:if>
+                        </h2>
+                       
+                    </figcaption>   
+                     e</a>                 
+                </figure>
+                <div class="d-flex justify-content-between tm-text-gray">
+                	<span>${plist.score }</span> 	 
+                    <span>${plist.first_pri }</span>
+                </div>
+            </div>  
+            </c:forEach> 
+        </div> <!-- row -->
+        <div class="row tm-mb-90">
+           <!--  <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
+                <a href="javascript:void(0);" class="btn btn-primary tm-btn-prev mb-2 disabled">Previous</a>
+                <div class="tm-paging d-flex">
+                    <a href="javascript:void(0);" class="active tm-paging-link"style="color: black;">1</a>
+                    <a href="javascript:void(0);" class="tm-paging-link"style="color: black;">2</a>
+                    <a href="javascript:void(0);" class="tm-paging-link"style="color: black;">3</a>
+                    <a href="javascript:void(0);" class="tm-paging-link"style="color: black;">4</a>
+                </div>
+                <a href="javascript:void(0);" class="btn btn-primary tm-btn-next">Next Page</a>
+            </div>       -->      
+        </div>
+    </div>
+    <div class="container-fluid tm-container-content tm-mt-60">
+        <div class="row mb-4">
+        
+            <h2 class="col-6 tm-text-primary">
+                ShareKitchen
+            </h2>
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <!-- <form action="" class="tm-text-primary">
+                    Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 200
+                </form> -->
+                <a href="../share/shareList.do">더보기</a>
+            </div>
+        </div>
+        <div class="row tm-mb-90 tm-gallery">
+        <!-- forEachh -->
+        <c:forEach var="slist" items="${slist }">
+        	<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
+                <figure class="effect-ming tm-video-item">
+              	  <a href="../share/shareDetail.do?skdno=${slist.skdno }">
+                    <img src="${slist.poster }" alt="Image" class="img-fluid rounded" style="width:250px; height:150px; border-radius:20px;">
+                    <figcaption class="d-flex align-items-center justify-content-center">
+                         <h2>
+                        <c:if test="${slist.title.length()>10 }">
+                          	 ${slist.title.substring(0,10) }
+                          </c:if>
+                       
+                          <c:if test="${slist.title.length()<10 }">
+                          	 ${slist.title }
+                          </c:if>
+                        </h2>
+                       
+                    </figcaption>   
+                     e</a>                 
+                </figure>
+                <div class="d-flex justify-content-between tm-text-gray">
+                	<span>${slist.max_mem }</span> 	 
+                    <span>${slist.price }</span>
+                </div>
+            </div>  
+            </c:forEach>
+            <!-- forEach end -->
+        </div> <!-- row -->
+        <div class="row tm-mb-90">
+            <!-- <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
+                <a href="javascript:void(0);" class="btn btn-primary tm-btn-prev mb-2 disabled">Previous</a>
+                <div class="tm-paging d-flex">
+                    <a href="javascript:void(0);" class="active tm-paging-link"style="color: black;">1</a>
+                    <a href="javascript:void(0);" class="tm-paging-link"style="color: black;">2</a>
+                    <a href="javascript:void(0);" class="tm-paging-link"style="color: black;">3</a>
+                    <a href="javascript:void(0);" class="tm-paging-link"style="color: black;">4</a>
+                </div>
+                <a href="javascript:void(0);" class="btn btn-primary tm-btn-next">Next Page</a>
+            </div>          -->   
         </div>
     </div>
     </div>

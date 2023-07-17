@@ -5,49 +5,199 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <meta name="description" content="Start your development with JoeBLog landing page.">
-   <meta name="author" content="Devcrud">
-   <title>JoeBLog | Components</title>
-   <!-- font icons -->
-   <link rel="stylesheet" href="../assets/vendors/themify-icons/css/themify-icons.css">
-   <!-- Bootstrap + Steller  -->
-   <link rel="stylesheet" href="../assets/css/joeblog.css">
-   
 <style type="text/css">
-.row{
-	margin: 0px auto;
-	width:300px;
-} 
-h1{
-	text-align: center;
-	font-family: 'Noto Sans KR', sans-serif;
+/* html { */
+/*   height: 100%; */
+/* } */
+/* body { */
+/*   margin:0; */
+/*   padding:0; */
+/*   font-family: sans-serif; */
+/*   background: linear-gradient(#141e30, #243b55); */
+/* } */
+
+.login-box {
+  position: relatives;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  /* transform: translate(-50%, -50%); */
+  margin : 0px auto;
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 1 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  /* pointer-events: none; */
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+
+.login-box a:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+}
+
+.login-box a span {
+  position: absolute;
+  display: block;
+}
+
+.login-box a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.login-box a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+.login-box a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+.login-box a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
 }
 </style>
-<!-- import -->
-<script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$(function(){ 
-	$('#logoutBtn').click(function(){
-		location.href="../member/logout.do"
-	})
-	$('#logBtn').on('click',function(){
+function log(){
+	$('#logBtn').click(function(){
+		// 유효성 검사 => 반드시 입력
 		let id=$('#id').val();
 		if(id.trim()=="")
-		{
-			$('#id').focus();
-			return;
-		}
+			{
+				$('#id').focus();
+				return;
+			}
 		let pwd=$('#pwd').val();
-		if(id.trim()=="")
+		if(pwd.trim()=="")
 		{
 			$('#pwd').focus();
 			return;
 		}
+		
+		/* // 전송 => 실행결과를 가지고 온다 (자체 처리) (요청 = 응답 : Ajax,Vue,React)
 		$.ajax({
 			type:'post',
-			url:'../member/login.do',
+			url:'../member/login_ok.do',
 			data:{"id":id,"pwd":pwd},
 			success:function(result) //NOID,NOPWD,OK
 			{
@@ -63,129 +213,58 @@ $(function(){
 				{
 					alert("비밀번호가 틀립니다!")
 					$('#pwd').val("");
-					$('#pwd').focus("");
+					$('#pwd').focus();
 				}
-				else
+				else 
 				{
-					location.href="../main/main.do"
+					location.href="../jsp/main.do"
 				}
 			}
-		})
+		}) */
 	})
-})
+}
 </script>
-
 </head>
 <body>
- <nav class="navbar navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="../assets/imgs/logo.png" alt="">
-            </a>
-            <div class="socials">
-                <a href="javascript:void(0)"><i class="ti-facebook"></i></a>
-                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
-                <a href="javascript:void(0)"><i class="ti-pinterest-alt"></i></a>
-                <a href="javascript:void(0)"><i class="ti-instagram"></i></a>
-                <a href="javascript:void(0)"><i class="ti-youtube"></i></a>
-            </div>
-        </div>
-    </nav> 
-    <nav class="navbar custom-navbar navbar-expand-md navbar-light bg-primary sticky-top">
-        <div class="container">
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">                     
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="no-sidebar.html">레시피</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="single-post.html">맛집</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="single-post.html">상품</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="single-post.html">공유주방</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            더보기
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">자유게시판</a>
-                            <a class="dropdown-item" href="#">묻고 답하기</a>
-                            <!-- <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a> -->
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
-                    </li>
-<!--  -->                 
-                    <form class="d-flex tm-search-form">
-            			<input class="form-control tm-search-input" type="search" placeholder="Search" aria-label="Search" style="width:70%;">
-            			<button class="btn btn-outline-success tm-search-btn" type="submit"style="width:30%">검색
-                		<i class="fas fa-search"></i>
-           				</button>
-        			</form>
-                </ul>
-                <div class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="components.html" class="btn btn-dark mt-1 btn-sm">로그인</a><a href="#" class="btn btn-danger mt-1 btn-sm">회원가입</a>
-                    </li>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- End Of Page Second Navigation -->
-
-  <div class="container">
-    <h1>Login</h1>
-    <div class="row">
-      <form method=post action=login_ok.jsp id="frm">
-      <table class="table">
-        <tr>
-          <td width=20%>ID</td>
-          <td width=80%>
-            <input type=text name=id size=15 class="input-sm" id=id>
-          </td>
-        </tr> 
-        <tr>
-          <td width=20%>Password</td>
-          <td width=80%>
-            <input type=pssword name=pwd size=15 class="input-sm" id=pwd>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" class="text-center">
-            <span id="print" style="color:red"></span>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" class="text-center">
-            <input type=button class="btn btn-sm btn-info" value=로그인 id="logBtn">
-          </td>
-        </tr>  
-        <tr>
-          <td colspan="2" class="text-center">
-            <input type=button class="btn btn-sm btn-danger" value="ID/PWD 찾기" id="findBtn">
-            <a href="signup.jsp" class="btn btn-sm btn-success">회원가입</a>
-          </td>
-        </tr>     
-      </table>
-      </form>
+<div class="row" style="padding-top: 30px">
+<div class="login-box">
+  <h2>LOGIN</h2>
+	<form>
+    <div class="user-box">
+      <input type="text" name="id" id="id" required="required">
+      <label>아이디</label>
     </div>
-  </div>
-   
-   <!-- core  -->
-   <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-   <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-
+    <div class="user-box">
+      <input type="password" name="pwd" id="pwd" required="required">
+      <label>비밀번호</label>
+    </div>
+      <div class="text-center">
+        <a href="javascript:void(0);" id="logBtn" onclick="log()"> 
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          로그인
+	    </a>
+	  </div>
+    <div class="text-center">
+      <a href="../member/findid.do">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        아이디 찾기
+	  </a>
+      <a href="../member/findpwd.do"> 
+       <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        비밀번호 찾기
+	  </a>
+    </div>
+  </form>
+</div> 
+</div>
 </body>
 </html>

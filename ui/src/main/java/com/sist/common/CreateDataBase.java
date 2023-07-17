@@ -12,14 +12,13 @@ public class CreateDataBase {
 			Context init=new InitialContext();
 			Context c=(Context)init.lookup("java://comp/env");
 			DataSource ds=(DataSource)c.lookup("jdbc/oracle");
-			conn=ds.getConnection();			
-		}catch(Exception ex) 
+			conn=ds.getConnection();
+		}catch(Exception ex)
 		{
 			ex.printStackTrace();
 		}
 		
 		return conn;
-		
 	}
 	public void disConnection(Connection conn,PreparedStatement ps)
 	{
@@ -29,4 +28,5 @@ public class CreateDataBase {
 			if(conn!=null) conn.close();
 		}catch(Exception ex) {}
 	}
+	
 }

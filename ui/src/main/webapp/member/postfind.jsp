@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,11 +8,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
 .container{
-	margin-top:20px;
+  margin-top: 20px;
 }
 .row{
-	margin:0px auto;
-	width:480px;
+  margin: 0px auto;
+  width:480px;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -40,26 +40,32 @@ $(function(){
 </script>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
+   <div class="container">
+     <div class="row">
       <table class="table">
         <tr>
           <td>
-          입력:<input type=text name=dong id=dong size=12 class="input-sm">
-          <input type=button value="검색" class="btn btn-sm btn-primary" id="postBtn">
+          입력:<input type=text name=dong id=dong size=12
+              class="input-sm">
+           <input type=button value="검색" class="btn btn-sm btn-primary"
+              id="postBtn">
           </td>
         </tr>
-        <tr> 
+        <tr>
           <td class="text-right">
-            <sub style="color:red">※동읍면을 입력하세요</sub>
+           <sub style="color:red">※동읍면을 입력하세요</sub>
           </td>
         </tr>
       </table>
       <hr>
       <div id="result">
-        
+       
       </div>
-    </div>
-  </div>
+     </div>
+   </div>
 </body>
 </html>
+
+
+
+

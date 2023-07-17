@@ -1,35 +1,39 @@
 package com.sist.dao;
-import java.sql.*;
-import java.util.*;
-import com.sist.common.*;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sist.common.CreateDataBase;
 import com.sist.vo.MemberVO;
 import com.sist.vo.ZipcodeVO;
+
 public class MemberDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private CreateDataBase db=new CreateDataBase();
 	private static MemberDAO dao;
-	
-	// 싱글턴
 	public static MemberDAO newInstance()
 	{
 		if(dao==null)
 			dao=new MemberDAO();
 		return dao;
 	}
-	// 회원 가입
-	// 1. 아이디 중복체크
-	public int membermnoCheck(String mno)
+	//중복체크
+	public int memberIdCheck(String id)
 	{
 		int count=0;
-		try 
+		if(id.equals("")) {
+			return 2;
+		}
+		try
 		{
 			conn=db.getConnection();
-			String sql="SELECT COUNT(*) "
-					+ "FROM project1_member "
-					+ "WHERE mno=?";
+			String sql="SELECT COUNT(*) FROM project_member WHERE id=?";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, mno);
+			ps.setString(1, id);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
 			count=rs.getInt(1);
@@ -43,19 +47,20 @@ public class MemberDAO {
 			db.disConnection(conn, ps);
 		}
 		return count;
+				
 	}
-	// 2. 이메일 중복체크
-	public int memberEmailCheck(String email)
+	public int memberNickCheck(String nickname)
 	{
 		int count=0;
-		try 
+		if(nickname.equals("")) {
+			return 2;
+		}
+		try
 		{
 			conn=db.getConnection();
-			String sql="SELECT COUNT(*) "
-					+ "FROM project1_member "
-					+ "WHERE email=?";
+			String sql="SELECT COUNT(*) FROM project_member WHERE nickname=?";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, email);
+			ps.setString(1, nickname);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
 			count=rs.getInt(1);
@@ -69,8 +74,8 @@ public class MemberDAO {
 			db.disConnection(conn, ps);
 		}
 		return count;
+				
 	}
-	// 3. 우편번호 검색
 	public int postFindCount(String dong)
 	{
 		int count=0;
@@ -86,7 +91,7 @@ public class MemberDAO {
 			rs.next();
 			count=rs.getInt(1);
 			rs.close();
-		}catch(Exception ex) 
+		}catch(Exception ex)
 		{
 			ex.printStackTrace();
 		}
@@ -100,7 +105,7 @@ public class MemberDAO {
 	public List<ZipcodeVO> postFindData(String dong)
 	{
 		List<ZipcodeVO> list=new ArrayList<ZipcodeVO>();
-		try 
+		try
 		{
 			conn=db.getConnection();
 			String sql="SELECT zipcode,sido,gugun,dong,NVL(bunji,' ') "
@@ -120,7 +125,7 @@ public class MemberDAO {
 				list.add(vo);
 			}
 			rs.close();
-		}catch(Exception ex) 
+		}catch(Exception ex)
 		{
 			ex.printStackTrace();
 		}
@@ -129,31 +134,16 @@ public class MemberDAO {
 			db.disConnection(conn, ps);
 		}
 		return list;
-	} 
-	// 회원가입
-	/*
-	 *   MNO                                       NOT NULL NUMBER
-		 mno                                                 VARCHAR2(20)
-		 PWD                                       NOT NULL VARCHAR2(20)
-		 NAME                                      NOT NULL VARCHAR2(51)
-		 NICKNAME                                  NOT NULL VARCHAR2(20)
-		 SEX                                                VARCHAR2(6)
-		 BIRTHDAY                                  NOT NULL VARCHAR2(20)
-		 EMAIL                                              VARCHAR2(120)
-		 POST                                      NOT NULL VARCHAR2(20)
-		 ADDR1                                     NOT NULL VARCHAR2(300)
-		 ADDR2                                              VARCHAR2(300)
-		 ADMIN                                              CHAR(1)
-	 */
+	}
 	public void memberInsert(MemberVO vo)
 	{
 		try
 		{
 			conn=db.getConnection();
-			String sql="INSERT INTO project1_member VALUES( "
-					+ "?,?,?,?,?,?,?,?,?,?,'n')";
+			String sql="INSERT INTO project_member VALUES("
+					+ "?,?,?,?,?,?,?,?,?,?,?,'n',SYSDATE)";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, vo.getMno());
+			ps.setString(1, vo.getId());
 			ps.setString(2, vo.getPwd());
 			ps.setString(3, vo.getName());
 			ps.setString(4, vo.getNickname());
@@ -163,6 +153,7 @@ public class MemberDAO {
 			ps.setString(8, vo.getPost());
 			ps.setString(9, vo.getAddr1());
 			ps.setString(10, vo.getAddr2());
+			ps.setString(11, vo.getPhone());
 			ps.executeUpdate();
 		}catch(Exception ex)
 		{
@@ -173,39 +164,33 @@ public class MemberDAO {
 			db.disConnection(conn, ps);
 		}
 	}
-	// 회원 수정
-	// 회원 탈퇴
-	// 아이디 찾기
-	// 비밀번호 찾기
-	// 비밀번호 변경
-	// 로그인
-	public MemberVO memberLogin(String mno,String pwd)
+	public MemberVO memberLogin(String id,String pwd)
 	{
 		MemberVO vo=new MemberVO();
 		try
 		{
 			conn=db.getConnection();
 			String sql="SELECT COUNT(*) "
-					+ "FROM project1_member "
-					+ "WHERE mno=?"; 
+					+ "FROM project_member "
+					+ "WHERE id=?";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, mno);
+			ps.setString(1, id);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
 			int count=rs.getInt(1);
 			rs.close();
-			/////////////////////// mno 존재여부
-			if(count==0) // mno X
+			//////////////////////////////// ID 존재여부 
+			if(count ==0) // ID(X)
 			{
-				vo.setMsg("NOmno");
+				vo.setMsg("NOID");
 			}
-			else  // mno O
+			else // ID(0)
 			{
 				sql="SELECT pwd,name,admin,sex "
-						+ "FROM project1_member "
-						+ "WHERE mno=?";
+					+ "FROM project_member "
+					+ "WHERE id=?";
 				ps=conn.prepareStatement(sql);
-				ps.setString(1, mno);
+				ps.setString(1, id);
 				rs=ps.executeQuery();
 				rs.next();
 				String db_pwd=rs.getString(1);
@@ -214,19 +199,20 @@ public class MemberDAO {
 				String sex=rs.getString(4);
 				rs.close();
 				
-				if(db_pwd.equals(pwd))
+				if(db_pwd.equals(pwd)) //로그인
 				{
-					vo.setMno(mno);
+					vo.setId(id);
 					vo.setName(name);
 					vo.setAdmin(admin);
 					vo.setSex(sex);
 					vo.setMsg("OK");
 				}
-				else
+				else // 비밀번호 틀린 상태
 				{
 					vo.setMsg("NOPWD");
 				}
 			}
+			
 		}catch(Exception ex)
 		{
 			ex.printStackTrace();
@@ -237,6 +223,96 @@ public class MemberDAO {
 		}
 		return vo;
 	}
-	
-	
+	// 아이디 찾기
+	public String findId(String name,String email) 
+	{
+		String result="";
+		try
+		{
+			conn=db.getConnection();
+			String sql="SELECT COUNT(*) FROM project_member "
+					+ "WHERE name=? AND email=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, email);
+			
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int count=rs.getInt(1);
+			// id=rs.getString("id");
+			rs.close();
+			
+			if(count==0) 
+			{
+				result="NO";
+			}
+			else
+			{
+				sql="SELECT RPAD(SUBSTR(id,1,2),LENGTH(id),'♬') "
+						+ "FROM project_member "
+						+ "WHERE name=? AND email=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, name);
+				ps.setString(2, email);
+				rs=ps.executeQuery();
+				rs.next();
+				result=rs.getString(1);
+				rs.close();
+			}
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			db.disConnection(conn, ps);
+		}
+		return result;
+	}
+	// 비밀번호 찾기
+	public String findPwd(String name,String id,String email)
+	{
+		String result="";
+		try
+		{
+			conn=db.getConnection();
+			String sql="SELECT COUNT(*) FROM project_member "
+					+ "WHERE name=? AND id=? AND email=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, id);
+			ps.setString(3, email);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int count=rs.getInt(1);
+			rs.close();
+			
+			if(count==0)
+			{
+				result="NO";
+			}
+			else
+			{
+				sql="SELECT RPAD(SUBSTR(pwd,1,2),LENGTH(pwd),'*') "
+						+ "FROM project_member "
+						+ "WHERE name=? AND id=? AND email=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, name);
+				ps.setString(2, id);
+				ps.setString(3, email);
+				rs=ps.executeQuery();
+				rs.next();
+				result=rs.getString(1);
+				rs.close();
+			}
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			db.disConnection(conn, ps);
+		}
+		return result;
+	}
 }
