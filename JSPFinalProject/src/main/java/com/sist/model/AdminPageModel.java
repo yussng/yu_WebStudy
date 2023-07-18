@@ -141,4 +141,31 @@ public class AdminPageModel {
 		dao.noticeUpdate(vo);
 		return "redirect:../adminpage/notice_list.do";
 	}
+	// 답하기
+	@RequestMapping("adminpage/replyboard_list.do")
+	public String adminpage_replyoard_list(HttpServletRequest request,HttpServletResponse response)
+	{
+		String page=request.getParameter("page");
+		if(page==null)
+			page="1";
+		int curpage=Integer.parseInt(page);
+		ReplyBoardDAO dao=ReplyBoardDAO.newInstance();
+		List<ReplyBoardVO> list=dao.replyBoardAdminListData(curpage);
+		int totalpage=dao.replyBoardAdminTotalPage();
+		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("adminpage_jsp", "../adminpage/replyboard_list.jsp");
+		request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
+		return "../main/main.jsp";
+	}
+	@RequestMapping("adminpage/replyboard_insert.do")
+	public String adminpage_replyoard_insert(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		request.setAttribute("no", no);
+		request.setAttribute("adminpage_jsp", "../adminpage/replyboard_insert.jsp");
+		request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
+		return "../main/main.jsp";
+	}
 }
