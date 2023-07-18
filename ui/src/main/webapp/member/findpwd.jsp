@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -180,14 +181,19 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
 $( function() {
-	  $('#findidBtn').click(function(){
+	  $('#findpwdBtn').click(function(){
 		  let name=$('#name').val();
 		  if(name.trim()==="")
 		  {
 			  $('#name').focus();
 			  return;
 		  }
-		  
+		  let id=$('#id').val();
+		  if(id.trim()==="")
+		  {
+			  $('#id').focus();
+			  return;
+		  }
 		  let email=$('#email').val();
 		  if(email.trim()==="")
 		  {
@@ -196,18 +202,18 @@ $( function() {
 		  }
 		  $.ajax({
 			  type:'post',
-			  url:'../member/findid_ok.do',
-			  data:{"name":name,"email":email},
+			  url:'../member/findpwd_ok.do',
+			  data:{"name":name,"id":id,"email":email},
 			  success:function(result)
 			  {
 				  let res=result.trim()
 				  if(res==='NO')
 				  {
-					  $('#id_email').html('<span style="color:red">이름이나 이메일이 존재하지 않습니다<span>');
+					  $('#pwd_email').html('<span style="color:red">이름이나 이메일이 존재하지 않습니다<span>');
 				  }
 				  else
 				  {
-					  $('#id_email').html('<span style="color:blue">'+res+'</span>');
+					  $('#pwd_email').html('<span style="color:blue">'+res+'</span>');
 				  }	  
 			  }
 		  })
@@ -216,38 +222,55 @@ $( function() {
 </script>
 </head>
 <body>
-  <div class="wrapper row3">
-    <main class="container clear"> 
-      <h2 class="sectiontitle">아이디 찾기</h2>
-        <div class="row">
-			<div id="tabs-1">
-			  <table class="table">
-			    <tr>
-			      <td width=20%>이름</td>
-			      <td width=80%>
-			        <input type=text id="name" class="input-sm">
-			      </td>
-			    </tr>
-			    <tr>
-			      <td width=20%>이메일</td>
-			      <td width=80%>
-			        <input type=text id="email" class="input-sm">
-			      </td>
-			    </tr>
-			    <tr>
-			      <td class="text-center" colspan="2">
-			        <input type=button value="검색" class="btn btn-sm btn-danger" id="findidBtn">
-			      </td>
-			    </tr>
-			    <tr>
-			      <td class="text-center" colspan="2">
-			        <h3 id="id_email"></h3>
-			      </td>
-			    </tr>
-			  </table>
-			</div>
-		  </div>
-    </main>
+<div class="row" style="padding-top: 30px">
+  <div class="login-box">
+    <h2>비밀번호 찾기</h2>
+    <form class="form-horizontal">
+      <div class="user-box">
+        <input type="text" name="name" id="name" placeholder="이름" required="required">
+        <label>이름</label>
+      </div>
+      <div class="user-box">
+        <input type="text" name="id" id="id" placeholder="아이디" required="required">
+        <label>아이디</label>
+      </div>
+      <div class="user-box">
+        <input type="email" name="email" id="email" placeholder="이메일" required="required">
+        <label>이메일</label>
+      </div>
+      <div class="user-box">
+        <h3 id="pwd_email"></h3>
+      </div>
+        
+      <div class="text-center">
+        <a href="javascript:void(0);" id="findpwdBtn"> 
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+     	  비밀번호 찾기
+	    </a>
+      </div>
+        
+      <div class="text-center">
+        <a href="../member/login.do"> 
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+     	  로그인
+	    </a>
+	    <a href="../member/join.do"> 
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+     	  회원가입
+	    </a>
+      </div>     
+    </form>
   </div>
+</div>
+
 </body>
 </html>

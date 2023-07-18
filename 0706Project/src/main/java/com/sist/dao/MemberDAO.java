@@ -224,59 +224,95 @@ public class MemberDAO {
 		return vo;
 	}
 	// 아이디 찾기
-	public String findId(String name,String email) 
-	{
-		String id=null;
-		try
+		public String findId(String name,String email) 
 		{
-			conn=db.getConnection();
-			String sql="SELECT id FROM project_member "
-					+ "WHERE name=? and email=?";
-			ps=conn.prepareStatement(sql);
-			ps.setString(1, name);
-			ps.setString(2, email);
-			
-			ResultSet rs=ps.executeQuery();
-			rs.next();
-			id=rs.getString(1);
-			// id=rs.getString("id");
-			rs.close();
-		}catch(Exception ex)
-		{
-			ex.printStackTrace();
+			String result="";
+			try
+			{
+				conn=db.getConnection();
+				String sql="SELECT COUNT(*) FROM project_member "
+						+ "WHERE name=? AND email=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, name);
+				ps.setString(2, email);
+				
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				int count=rs.getInt(1);
+				// id=rs.getString("id");
+				rs.close();
+				
+				if(count==0) 
+				{
+					result="NO";
+				}
+				else
+				{
+					sql="SELECT RPAD(SUBSTR(id,1,1),LENGTH(id),'*') "
+							+ "FROM project_member "
+							+ "WHERE name=? AND email=?";
+					ps=conn.prepareStatement(sql);
+					ps.setString(1, name);
+					ps.setString(2, email);
+					rs=ps.executeQuery();
+					rs.next();
+					result=rs.getString(1);
+					rs.close();
+				}
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				db.disConnection(conn, ps);
+			}
+			return result;
 		}
-		finally
+		// 비밀번호 찾기
+		public String findPwd(String name,String id,String email)
 		{
-			db.disConnection(conn, ps);
+			String result="";
+			try
+			{
+				conn=db.getConnection();
+				String sql="SELECT COUNT(*) FROM project_member "
+						+ "WHERE name=? AND id=? AND email=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, name);
+				ps.setString(2, id);
+				ps.setString(3, email);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				int count=rs.getInt(1);
+				rs.close();
+				
+				if(count==0)
+				{
+					result="NO";
+				}
+				else
+				{
+					sql="SELECT RPAD(SUBSTR(pwd,1,1),LENGTH(pwd),'*') "
+							+ "FROM project_member "
+							+ "WHERE name=? AND id=? AND email=?";
+					ps=conn.prepareStatement(sql);
+					ps.setString(1, name);
+					ps.setString(2, id);
+					ps.setString(3, email);
+					rs=ps.executeQuery();
+					rs.next();
+					result=rs.getString(1);
+					rs.close();
+				}
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				db.disConnection(conn, ps);
+			}
+			return result;
 		}
-		return id;
 	}
-	// 비밀번호 찾기
-	public String findPwd(String id,String email,String name)
-	{
-		String pwd=null;
-		try
-		{
-			conn=db.getConnection();
-			String sql="SELECT pwd FROM project_member WHERE id=? AND email=? AND name=?";
-			ps=conn.prepareStatement(sql);
-			ps.setString(1, id);
-			ps.setString(2, email);
-			ps.setString(3, name);
-			
-			ResultSet rs=ps.executeQuery();
-			
-			rs.next();
-			pwd=rs.getString("pwd");
-			rs.close();
-		}catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		finally
-		{
-			db.disConnection(conn, ps);
-		}
-		return pwd;
-	}
-}

@@ -147,38 +147,58 @@ public String memberJoinOk(HttpServletRequest request,HttpServletResponse respon
 	 session.invalidate(); // 세션 끊기
 	 return "redirect:../jsp/main.do"; //화면 돌려주기
  }
- // 비밀번호 찾기
- @RequestMapping("member/findpwd.do")
- public String findPasswordAction(HttpServletRequest request,HttpServletResponse response)
+ // 아이디 찾기
+ @RequestMapping("member/findid.do")
+ public String findId(HttpServletRequest request,HttpServletResponse response)
  {
-	 /*MemberDAO dao=new MemberDAO();
-	 String id=request.getParameter("id");
-	 String email=request.getParameter("email");
+	 request.setAttribute("main_jsp", "../member/findid.jsp");
+	 return "../jsp/main.jsp";
+ }
+ @RequestMapping("member/findid_ok.do")
+ public void findIdOk(HttpServletRequest request,HttpServletResponse response)
+ {
+	 try
+	 {
+		 request.setCharacterEncoding("UTF-8");
+	 }catch(Exception ex) {}
 	 String name=request.getParameter("name");
-	 String pwd=dao.findPwd(id,email,name);
-	 request.setAttribute("pwd", pwd);
-	 if(pwd==null)
-		 return "member/findpwd.jsp";
-	 return "../login/findpwdafter.jsp";*/
+	 String email=request.getParameter("email");
 	 
+	 MemberDAO dao=MemberDAO.newInstance();
+	 String res=dao.findId(name, email);
+	 try
+	 {
+		 PrintWriter out=response.getWriter();
+		 out.println(res);
+	 }catch(Exception ex) {}
+ }
+ // 비밀번호 찾기
+ 
+ @RequestMapping("member/findpwd.do")
+ public String findPwd(HttpServletRequest request,HttpServletResponse response)
+ {
 	 request.setAttribute("main_jsp", "../member/findpwd.jsp");
 	 return "../jsp/main.jsp";
  }
- 
- // 아이디 찾기 로직
- @RequestMapping("member/findid.do")
- public String findIdAction(HttpServletRequest request,HttpServletResponse response)
+ @RequestMapping("member/findpwd_ok.do")
+ public void findPwdOk(HttpServletRequest request,HttpServletResponse response)
  {
-	 /*MemberDAO dao=new MemberDAO();
+	 try
+	 {
+		 request.setCharacterEncoding("UTF-8");
+	 }catch(Exception ex) {}
 	 String name=request.getParameter("name");
+	 String id=request.getParameter("id");
 	 String email=request.getParameter("email");
-	 String id=dao.findId(name,email);
-	 request.setAttribute("id", id);
-	 if(id==null)
-		 return "member/findid.jsp";
-	 return "../member/findidafter.jsp";*/
 	 
-	 request.setAttribute("main_jsp", "../member/findpwd.jsp");
-	 return "../jsp/main.jsp";
+	 MemberDAO dao=MemberDAO.newInstance();
+	 
+	 String res=dao.findPwd(name, id, email);
+	 
+	 try
+	 {
+		 PrintWriter out=response.getWriter();
+		 out.println(res);
+	 }catch(Exception ex) {}
  }
 }
