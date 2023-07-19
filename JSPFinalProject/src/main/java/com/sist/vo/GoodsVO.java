@@ -11,9 +11,15 @@ package com.sist.vo;
 	 HIT                                                NUMBER
  */
 public class GoodsVO {
-	private int no,goods_discount,hit,account,price;
+	private int no,goods_discount,hit,account,price,type;
 	private String goods_name,goods_sub,goods_price,goods_first_price,goods_delivery,goods_poster;
 	
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
 	public int getPrice() {
 		return price;
 	}
