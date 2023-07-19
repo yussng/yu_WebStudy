@@ -76,6 +76,33 @@ public class MemberDAO {
 		return count;
 				
 	}
+	public int memberPhoneCheck(String phone)
+	{
+		int count=0;
+		if(phone.equals("")) {
+			return 2;
+		}
+		try
+		{
+			conn=db.getConnection();
+			String sql="SELECT COUNT(*) FROM project_member WHERE phone=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, phone);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			count=rs.getInt(1);
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			db.disConnection(conn, ps);
+		}
+		return count;
+				
+	}
 	public int postFindCount(String dong)
 	{
 		int count=0;
@@ -248,7 +275,7 @@ public class MemberDAO {
 			}
 			else
 			{
-				sql="SELECT RPAD(SUBSTR(id,1,2),LENGTH(id),'♬') "
+				sql="SELECT RPAD(SUBSTR(id,1,2),LENGTH(id),'*') "
 						+ "FROM project_member "
 						+ "WHERE name=? AND email=?";
 				ps=conn.prepareStatement(sql);

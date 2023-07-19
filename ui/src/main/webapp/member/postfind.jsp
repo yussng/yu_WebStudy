@@ -31,7 +31,6 @@ $(function(){
 			data:{"dong":dong},
 			success:function(result)
 			{
-				alert(result)
 				$('#result').html(result);
 			}
 		})

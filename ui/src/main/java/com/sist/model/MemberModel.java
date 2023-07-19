@@ -43,6 +43,18 @@ public void nickcheck_ok(HttpServletRequest request, HttpServletResponse respons
 		out.println(count); // ajax result에 보낸다 
 	}catch(Exception ex) {}
 }
+@RequestMapping("member/phonecheck_ok.do")
+public void phonecheck_ok(HttpServletRequest request, HttpServletResponse response)
+{
+	String phone=request.getParameter("phone");
+	MemberDAO dao=MemberDAO.newInstance();
+	int count=dao.memberPhoneCheck(phone);
+	try
+	{
+		PrintWriter out=response.getWriter(); //메모리에 저장
+		out.println(count); // ajax result에 보낸다 
+	}catch(Exception ex) {}
+}
 @RequestMapping("member/postfind.do")
 public String memberPostFind(HttpServletRequest request,HttpServletResponse response)
 {
@@ -99,7 +111,6 @@ public String memberJoinOk(HttpServletRequest request,HttpServletResponse respon
 	vo.setNickname(nickname);
 	vo.setPhone(phone1+"-"+phone2);
 	
-	
 	MemberDAO dao=MemberDAO.newInstance();
 	dao.memberInsert(vo);
 	
@@ -137,7 +148,6 @@ public String memberJoinOk(HttpServletRequest request,HttpServletResponse respon
 			// 사용자 브라우저에 읽어 가는 메모리 공간 
 			out.println(vo.getMsg()); // NOID, NOPWD, OK 
 		}catch(Exception ex) {}
-		
 		
  }
  @RequestMapping("member/logout.do")

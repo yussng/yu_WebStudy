@@ -194,7 +194,7 @@ function log(){
 			return;
 		}
 		
-		/* // 전송 => 실행결과를 가지고 온다 (자체 처리) (요청 = 응답 : Ajax,Vue,React)
+		// 전송 => 실행결과를 가지고 온다 (자체 처리) (요청 = 응답 : Ajax,Vue,React)
 		$.ajax({
 			type:'post',
 			url:'../member/login_ok.do',
@@ -220,7 +220,7 @@ function log(){
 					location.href="../jsp/main.do"
 				}
 			}
-		}) */
+		})
 	})
 }
 </script>
