@@ -10,7 +10,7 @@
 /*   height: 100%; */
 /* } */
 /* body { */
-/*   margin:0; */
+/*   margin:0;    */
 /*   padding:0; */
 /*   font-family: sans-serif; */
 /*   background: linear-gradient(#141e30, #243b55); */
@@ -216,38 +216,42 @@ $( function() {
 </script>
 </head>
 <body>
-  <div class="wrapper row3">
-    <main class="container clear"> 
-      <h2 class="sectiontitle">아이디 찾기</h2>
-        <div class="row">
-			<div id="tabs-1">
-			  <table class="table">
-			    <tr>
-			      <td width=20%>이름</td>
-			      <td width=80%>
-			        <input type=text id="name" class="input-sm">
-			      </td>
-			    </tr>
-			    <tr>
-			      <td width=20%>이메일</td>
-			      <td width=80%>
-			        <input type=text id="email" class="input-sm">
-			      </td>
-			    </tr>
-			    <tr>
-			      <td class="text-center" colspan="2">
-			        <input type=button value="검색" class="btn btn-sm btn-danger" id="findidBtn">
-			      </td>
-			    </tr>
-			    <tr>
-			      <td class="text-center" colspan="2">
-			        <h3 id="id_email"></h3>
-			      </td>
-			    </tr>
-			  </table>
-			</div>
-		  </div>
-    </main>
+<div class="row" style="padding-top: 30px">
+  <div class="login-box">
+    <h2>아이디 찾기</h2>
+    <form class="form-horizontal">
+      <div class="user-box">
+        <input type="text" id="name" placeholder="이름" required="required">
+        <label>이름</label>
+      </div>
+      <div class="user-box">
+        <input type="email" id="email" placeholder="이메일" required="required">
+        <label>이메일</label>
+      </div>
+      <div class="user-box">
+        <h3 id="id_email"></h3>
+      </div>
+      <div class="text-center">
+        <a href="javascript:void(0);" id="findidBtn"> 
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+     	  아이디 찾기
+	    </a>
+      
+	    <a href="../member/findpwd.do"> 
+       <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        비밀번호 찾기
+	  </a>
+      </div>     
+    </form>
+    <div>
+    </div>
   </div>
+</div>
 </body>
 </html>

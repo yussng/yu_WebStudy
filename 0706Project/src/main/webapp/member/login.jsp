@@ -228,7 +228,7 @@ function log(){
 <body>
 <div class="row" style="padding-top: 30px">
 <div class="login-box">
-  <h2>LOGIN</h2>
+  <h2>로그인</h2>
 	<form>
     <div class="user-box">
       <input type="text" name="id" id="id" required="required">

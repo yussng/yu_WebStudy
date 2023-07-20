@@ -43,6 +43,18 @@ public void nickcheck_ok(HttpServletRequest request, HttpServletResponse respons
 		out.println(count); // ajax result에 보낸다 
 	}catch(Exception ex) {}
 }
+@RequestMapping("member/phonecheck_ok.do")
+public void phonecheck_ok(HttpServletRequest request, HttpServletResponse response)
+{
+	String phone=request.getParameter("phone");
+	MemberDAO dao=MemberDAO.newInstance();
+	int count=dao.memberPhoneCheck(phone);
+	try
+	{
+		PrintWriter out=response.getWriter(); //메모리에 저장
+		out.println(count); // ajax result에 보낸다 
+	}catch(Exception ex) {}
+}
 @RequestMapping("member/postfind.do")
 public String memberPostFind(HttpServletRequest request,HttpServletResponse response)
 {
@@ -99,7 +111,6 @@ public String memberJoinOk(HttpServletRequest request,HttpServletResponse respon
 	vo.setNickname(nickname);
 	vo.setPhone(phone1+"-"+phone2);
 	
-	
 	MemberDAO dao=MemberDAO.newInstance();
 	dao.memberInsert(vo);
 	
@@ -138,7 +149,6 @@ public String memberJoinOk(HttpServletRequest request,HttpServletResponse respon
 			out.println(vo.getMsg()); // NOID, NOPWD, OK 
 		}catch(Exception ex) {}
 		
-		
  }
  @RequestMapping("member/logout.do")
  public String logout(HttpServletRequest request, HttpServletResponse response)
@@ -147,6 +157,7 @@ public String memberJoinOk(HttpServletRequest request,HttpServletResponse respon
 	 session.invalidate(); // 세션 끊기
 	 return "redirect:../jsp/main.do"; //화면 돌려주기
  }
+
  // 아이디 찾기
  @RequestMapping("member/findid.do")
  public String findId(HttpServletRequest request,HttpServletResponse response)
@@ -175,7 +186,7 @@ public String memberJoinOk(HttpServletRequest request,HttpServletResponse respon
  // 비밀번호 찾기
  
  @RequestMapping("member/findpwd.do")
- public String findPwd(HttpServletRequest request,HttpServletResponse response)
+ public String findPasswordAction(HttpServletRequest request,HttpServletResponse response)
  {
 	 request.setAttribute("main_jsp", "../member/findpwd.jsp");
 	 return "../jsp/main.jsp";

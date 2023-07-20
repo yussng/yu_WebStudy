@@ -222,45 +222,46 @@ $( function() {
 </script>
 </head>
 <body>
-  <div class="wrapper row3">
-    <main class="container clear"> 
-      <h2 class="sectiontitle">비밀번호 찾기</h2>
-        <div class="row">
-			<div id="tabs-1">
-			  <table class="table">
-			    <tr>
-			      <td width=20%>이름</td>
-			      <td width=80%>
-			        <input type=text id="name" class="input-sm">
-			      </td>
-			    </tr>
-			    <tr>
-			      <td width=20%>ID</td>
-			      <td width=80%>
-			        <input type=text id="id" class="input-sm">
-			      </td>
-			    </tr>
-			    <tr>
-			      <td width=20%>이메일</td>
-			      <td width=80%>
-			        <input type=text id="email" class="input-sm">
-			      </td>
-			    </tr>
-			    <tr>
-			      <td class="text-center" colspan="2">
-			        <input type=button value="검색" class="btn btn-sm btn-danger" id="findpwdBtn">
-			      </td>
-			    </tr>
-			    <tr>
-			      <td class="text-center" colspan="2">
-			        <h3 id="pwd_email"></h3>
-			      </td>
-			    </tr>
-			  </table>
-			</div>
-		  
-        </div>
-    </main>
+<div class="row" style="padding-top: 30px">
+  <div class="login-box">
+    <h2>비밀번호 찾기</h2>
+    <form class="form-horizontal">
+      <div class="user-box">
+        <input type="text" name="name" id="name" placeholder="이름" required="required">
+        <label>이름</label>
+      </div>
+      <div class="user-box">
+        <input type="text" name="id" id="id" placeholder="아이디" required="required">
+        <label>아이디</label>
+      </div>
+      <div class="user-box">
+        <input type="email" name="email" id="email" placeholder="이메일" required="required">
+        <label>이메일</label>
+      </div>
+      <div class="user-box">
+        <h3 id="pwd_email"></h3>
+      </div>
+        
+      <div class="text-center">
+        <a href="javascript:void(0);" id="findpwdBtn"> 
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+     	  비밀번호 찾기
+	    </a>
+	    <a href="../member/login.do"> 
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+      	  <span></span>
+     	  로그인
+	    </a>
+	    
+      </div>     
+    </form>
   </div>
+</div>
+
 </body>
 </html>

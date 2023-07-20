@@ -76,6 +76,33 @@ public class MemberDAO {
 		return count;
 				
 	}
+	public int memberPhoneCheck(String phone)
+	{
+		int count=0;
+		if(phone.equals("")) {
+			return 2;
+		}
+		try
+		{
+			conn=db.getConnection();
+			String sql="SELECT COUNT(*) FROM project_member WHERE phone=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, phone);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			count=rs.getInt(1);
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			db.disConnection(conn, ps);
+		}
+		return count;
+				
+	}
 	public int postFindCount(String dong)
 	{
 		int count=0;
@@ -224,95 +251,95 @@ public class MemberDAO {
 		return vo;
 	}
 	// 아이디 찾기
-		public String findId(String name,String email) 
+	public String findId(String name,String email) 
+	{
+		String result="";
+		try
 		{
-			String result="";
-			try
+			conn=db.getConnection();
+			String sql="SELECT COUNT(*) FROM project_member "
+					+ "WHERE name=? AND email=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, email);
+			
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int count=rs.getInt(1);
+			// id=rs.getString("id");
+			rs.close();
+			
+			if(count==0) 
 			{
-				conn=db.getConnection();
-				String sql="SELECT COUNT(*) FROM project_member "
+				result="NO";
+			}
+			else
+			{
+				sql="SELECT RPAD(SUBSTR(id,1,2),LENGTH(id),'*') "
+						+ "FROM project_member "
 						+ "WHERE name=? AND email=?";
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, name);
 				ps.setString(2, email);
-				
-				ResultSet rs=ps.executeQuery();
+				rs=ps.executeQuery();
 				rs.next();
-				int count=rs.getInt(1);
-				// id=rs.getString("id");
+				result=rs.getString(1);
 				rs.close();
-				
-				if(count==0) 
-				{
-					result="NO";
-				}
-				else
-				{
-					sql="SELECT RPAD(SUBSTR(id,1,1),LENGTH(id),'*') "
-							+ "FROM project_member "
-							+ "WHERE name=? AND email=?";
-					ps=conn.prepareStatement(sql);
-					ps.setString(1, name);
-					ps.setString(2, email);
-					rs=ps.executeQuery();
-					rs.next();
-					result=rs.getString(1);
-					rs.close();
-				}
-			}catch(Exception ex)
-			{
-				ex.printStackTrace();
 			}
-			finally
-			{
-				db.disConnection(conn, ps);
-			}
-			return result;
-		}
-		// 비밀번호 찾기
-		public String findPwd(String name,String id,String email)
+		}catch(Exception ex)
 		{
-			String result="";
-			try
+			ex.printStackTrace();
+		}
+		finally
+		{
+			db.disConnection(conn, ps);
+		}
+		return result;
+	}
+	// 비밀번호 찾기
+	public String findPwd(String name,String id,String email)
+	{
+		String result="";
+		try
+		{
+			conn=db.getConnection();
+			String sql="SELECT COUNT(*) FROM project_member "
+					+ "WHERE name=? AND id=? AND email=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, id);
+			ps.setString(3, email);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			int count=rs.getInt(1);
+			rs.close();
+			
+			if(count==0)
 			{
-				conn=db.getConnection();
-				String sql="SELECT COUNT(*) FROM project_member "
+				result="NO";
+			}
+			else
+			{
+				sql="SELECT RPAD(SUBSTR(pwd,1,2),LENGTH(pwd),'*') "
+						+ "FROM project_member "
 						+ "WHERE name=? AND id=? AND email=?";
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, name);
 				ps.setString(2, id);
 				ps.setString(3, email);
-				ResultSet rs=ps.executeQuery();
+				rs=ps.executeQuery();
 				rs.next();
-				int count=rs.getInt(1);
+				result=rs.getString(1);
 				rs.close();
-				
-				if(count==0)
-				{
-					result="NO";
-				}
-				else
-				{
-					sql="SELECT RPAD(SUBSTR(pwd,1,1),LENGTH(pwd),'*') "
-							+ "FROM project_member "
-							+ "WHERE name=? AND id=? AND email=?";
-					ps=conn.prepareStatement(sql);
-					ps.setString(1, name);
-					ps.setString(2, id);
-					ps.setString(3, email);
-					rs=ps.executeQuery();
-					rs.next();
-					result=rs.getString(1);
-					rs.close();
-				}
-			}catch(Exception ex)
-			{
-				ex.printStackTrace();
 			}
-			finally
-			{
-				db.disConnection(conn, ps);
-			}
-			return result;
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
 		}
+		finally
+		{
+			db.disConnection(conn, ps);
+		}
+		return result;
 	}
+}
